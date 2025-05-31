@@ -64,4 +64,18 @@ class PromptApi {
         googleLLMClient: GoogleLLMClient,
         prompt: Prompt,
     ) = googleLLMClient.execute(prompt, GoogleModels.Gemini2_0Flash001)
+
+    suspend fun run() {
+        val promptApi = PromptApi()
+
+        val prompt = promptApi.createPrompt()
+
+        // OpenAI
+        val openAIResponse = promptApi.executePrompt(promptApi.openAILLMClient, prompt)
+        println(openAIResponse)
+
+        // Google AI Studio
+        val googleAIResponse = promptApi.executePrompt(promptApi.googleAIStudioLLMClient, prompt)
+        println(googleAIResponse)
+    }
 }
