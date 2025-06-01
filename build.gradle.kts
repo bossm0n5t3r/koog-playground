@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.ktlint)
 }
 
@@ -21,6 +22,7 @@ dependencies {
     implementation(libs.koog.agents)
     implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.koin.core)
+    implementation(libs.kotlinx.serialization.json)
     testImplementation(libs.kotlin.test.junit5)
 }
 
