@@ -19,6 +19,8 @@ repositories {
 
 dependencies {
     implementation(libs.koog.agents)
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.core)
     testImplementation(libs.kotlin.test.junit5)
 }
 

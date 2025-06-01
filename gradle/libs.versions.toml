@@ -5,11 +5,16 @@ ktlint-version = "1.6.0"
 jdk-version = "21"
 koog-maven-url = "https://packages.jetbrains.team/maven/p/grazi/grazie-platform-public"
 koog-version = "0.1.0"
+koin-bom-version = "4.0.4"
 
 [libraries]
 
 # Koog
 koog-agents = { module = "ai.koog:koog-agents", version.ref = "koog-version" }
+
+# Koin
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom-version" }
+koin-core = { module = "io.insert-koin:koin-core" }
 
 # Testing
 kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin-version" }
