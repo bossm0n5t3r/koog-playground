@@ -7,6 +7,8 @@ koog-maven-url = "https://packages.jetbrains.team/maven/p/grazi/grazie-platform-
 koog-version = "0.1.0"
 koin-bom-version = "4.0.4"
 kotlinx-serialization-version = "1.8.1"
+kotlinx-coroutines-version = "1.10.2"
+mockk-version = "1.14.2"
 
 [libraries]
 
@@ -22,6 +24,9 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 
 # Testing
 kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin-version" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-version" }
+koog-agents-test = { module = "ai.koog:agents-test", version.ref = "koog-version" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk-version" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }

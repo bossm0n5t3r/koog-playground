@@ -24,6 +24,9 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.kotlinx.serialization.json)
     testImplementation(libs.kotlin.test.junit5)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.koog.agents.test)
+    testImplementation(libs.mockk)
 }
 
 tasks.test {
