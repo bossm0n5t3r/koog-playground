@@ -1,5 +1,3 @@
-package me.bossm0n5t3r
-
 import ai.koog.agents.ext.agent.simpleSingleRunAgent
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
