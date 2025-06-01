@@ -8,6 +8,7 @@ import ai.koog.prompt.executor.clients.openai.OpenAILLMClient
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
 import ai.koog.prompt.params.LLMParams
+import me.bossm0n5t3r.me.bossm0n5t3r.utils.executeWithTitle
 
 class PromptApi(
     private val openAIApiKey: String,
@@ -60,21 +61,21 @@ class PromptApi(
         val prompt = createPrompt()
 
         // OpenAI
-        val openAIResponse = executePrompt(openAILLMClient, prompt)
-        println("\n")
-        println("=== OpenAI Response ===")
-        println(openAIResponse)
+        executeWithTitle("OpenAI Response") {
+            val openAIResponse = executePrompt(openAILLMClient, prompt)
+            println(openAIResponse)
+        }
 
         // Google AI Studio
-        val googleAIResponse = executePrompt(googleAIStudioLLMClient, prompt)
-        println("\n")
-        println("=== Google AI Studio Response ===")
-        println(googleAIResponse)
+        executeWithTitle("Google AI Studio Response") {
+            val googleAIResponse = executePrompt(googleAIStudioLLMClient, prompt)
+            println(googleAIResponse)
+        }
 
         // single provider executor
-        val responseFromSingleProviderExecutor = executePromptUsingSimpleOpenAIExecutor(prompt)
-        println("\n")
-        println("=== Single Provider Executor Response ===")
-        println(responseFromSingleProviderExecutor)
+        executeWithTitle("Simple OpenAI Executor Response") {
+            val responseFromSingleProviderExecutor = executePromptUsingSimpleOpenAIExecutor(prompt)
+            println(responseFromSingleProviderExecutor)
+        }
     }
 }
