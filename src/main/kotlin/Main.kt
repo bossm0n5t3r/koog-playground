@@ -1,3 +1,4 @@
+import me.bossm0n5t3r.agent.AIAgentSample
 import me.bossm0n5t3r.api.PromptApi
 import me.bossm0n5t3r.api.SingleApi
 import me.bossm0n5t3r.di.appModule
@@ -12,15 +13,15 @@ suspend fun main() {
         modules(appModule)
     }
 
-    // Get PromptApi instance from Koin
+    // PromptApi
     val promptApi: PromptApi by inject(PromptApi::class.java)
-
-    // Run the API
 //    promptApi.run()
 
-    // Get a SimpleApi instance from Koin
+    // SimpleApi
     val singleApi: SingleApi by inject(SingleApi::class.java)
+//    singleApi.run()
 
-    // Run the SimpleApi
-    singleApi.run()
+    // AIAgent
+    val aiAgent: AIAgentSample by inject(AIAgentSample::class.java)
+    aiAgent.main()
 }

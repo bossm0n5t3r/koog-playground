@@ -2,6 +2,7 @@ package me.bossm0n5t3r.di
 
 import ai.koog.prompt.executor.clients.google.GoogleLLMClient
 import ai.koog.prompt.executor.clients.openai.OpenAILLMClient
+import me.bossm0n5t3r.agent.AIAgentSample
 import me.bossm0n5t3r.api.PromptApi
 import me.bossm0n5t3r.api.SingleApi
 import org.koin.core.qualifier.named
@@ -32,4 +33,6 @@ val appModule =
         }
 
         single { SingleApi(get(qualifier = named("openAIApiKey"))) }
+
+        single { AIAgentSample(get(qualifier = named("openAIApiKey"))) }
     }
