@@ -2,6 +2,7 @@ import me.bossm0n5t3r.agent.AIAgentSample
 import me.bossm0n5t3r.api.PromptApi
 import me.bossm0n5t3r.api.SingleApi
 import me.bossm0n5t3r.di.appModule
+import me.bossm0n5t3r.tools.AgentWithWeatherToolSet
 import org.koin.core.context.startKoin
 import org.koin.java.KoinJavaComponent.inject
 
@@ -23,5 +24,9 @@ suspend fun main() {
 
     // AIAgent
     val aiAgent: AIAgentSample by inject(AIAgentSample::class.java)
-    aiAgent.main()
+//    aiAgent.main()
+
+    // AgentWithWeatherToolSet
+    val agentWithWeatherToolSet: AgentWithWeatherToolSet by inject(AgentWithWeatherToolSet::class.java)
+    agentWithWeatherToolSet.run()
 }
