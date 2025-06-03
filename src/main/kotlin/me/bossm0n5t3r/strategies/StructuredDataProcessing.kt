@@ -34,17 +34,6 @@ class StructuredDataProcessing(
         val conditions: String,
     )
 
-    @Serializable
-    data class StructuredResponse<T>(
-        val structure: T,
-        val raw: String,
-    )
-
-    @Serializable
-    data class Success<T>(
-        val data: T,
-    )
-
     fun main(): Unit =
         runBlocking {
             // Create sample forecasts
@@ -63,10 +52,10 @@ class StructuredDataProcessing(
                 )
 
             // Generate JSON Schema
-            val forecastStructure =
-                JsonStructuredData.createJsonStructure<SimpleWeatherForecast>(
+            val forecastsStructure =
+                JsonStructuredData.createJsonStructure<List<SimpleWeatherForecast>>(
                     schemaFormat = JsonSchemaGenerator.SchemaFormat.JsonSchema,
-                    examples = exampleForecasts,
+                    examples = listOf(exampleForecasts),
                     schemaType = JsonStructuredData.JsonSchemaType.SIMPLE,
                 )
 
@@ -79,7 +68,7 @@ class StructuredDataProcessing(
                         val structuredResponse =
                             llm.writeSession {
                                 this.requestLLMStructured(
-                                    structure = forecastStructure,
+                                    structure = forecastsStructure,
                                     fixingModel = OpenAIModels.Chat.GPT4o,
                                 )
                             }
@@ -106,6 +95,11 @@ class StructuredDataProcessing(
                                 When asked for a weather forecast, provide a realistic but fictional forecast.
                                 """.trimIndent(),
                             )
+                            user(
+                                """
+                                Please provide a list of 10 weather forecasts for Paris.
+                                """.trimIndent(),
+                            )
                         },
                     model = OpenAIModels.Chat.GPT4o,
                     maxAgentIterations = 5,
@@ -125,7 +119,7 @@ class StructuredDataProcessing(
 
                 if (responseString == null) return@executeWithTitle
 
-                val regex = Regex("""raw=\{(.|\n)*\}""")
+                val regex = Regex("""raw=\[(.|\n)*]""")
                 val rawMatch = regex.find(responseString)
                 val rawJson =
                     rawMatch
@@ -133,11 +127,15 @@ class StructuredDataProcessing(
                         ?.removePrefix("raw=")
                         ?.trim()
 
-                // JSON 역직렬화
+                println("Raw JSON:")
+                println(rawJson)
+
+                // JSON deserialization
                 val forecast =
                     rawJson?.let {
-                        Json.decodeFromString<SimpleWeatherForecast>(it)
+                        Json.decodeFromString<List<SimpleWeatherForecast>>(it)
                     }
+                println("Forecast:")
                 println(forecast)
             }
         }
