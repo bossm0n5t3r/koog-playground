@@ -5,6 +5,7 @@ import ai.koog.prompt.executor.clients.openai.OpenAILLMClient
 import me.bossm0n5t3r.agent.AIAgentSample
 import me.bossm0n5t3r.api.PromptApi
 import me.bossm0n5t3r.api.SingleApi
+import me.bossm0n5t3r.strategies.StructuredDataProcessing
 import me.bossm0n5t3r.tools.AgentWithWeatherToolSet
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -38,4 +39,6 @@ val appModule =
         single { AIAgentSample(get(qualifier = named("openAIApiKey"))) }
 
         single { AgentWithWeatherToolSet(get(qualifier = named("openAIApiKey"))) }
+
+        single { StructuredDataProcessing(get(qualifier = named("openAIApiKey"))) }
     }

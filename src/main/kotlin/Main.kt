@@ -2,6 +2,7 @@ import me.bossm0n5t3r.agent.AIAgentSample
 import me.bossm0n5t3r.api.PromptApi
 import me.bossm0n5t3r.api.SingleApi
 import me.bossm0n5t3r.di.appModule
+import me.bossm0n5t3r.strategies.StructuredDataProcessing
 import me.bossm0n5t3r.tools.AgentWithWeatherToolSet
 import org.koin.core.context.startKoin
 import org.koin.java.KoinJavaComponent.inject
@@ -28,5 +29,9 @@ suspend fun main() {
 
     // AgentWithWeatherToolSet
     val agentWithWeatherToolSet: AgentWithWeatherToolSet by inject(AgentWithWeatherToolSet::class.java)
-    agentWithWeatherToolSet.run()
+//    agentWithWeatherToolSet.run()
+
+    // StructuredDataProcessing
+    val structuredDataProcessing: StructuredDataProcessing by inject(StructuredDataProcessing::class.java)
+    structuredDataProcessing.main()
 }
