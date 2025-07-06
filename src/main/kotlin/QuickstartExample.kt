@@ -1,4 +1,4 @@
-import ai.koog.agents.ext.agent.simpleSingleRunAgent
+import ai.koog.agents.core.agent.AIAgent
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
 import kotlinx.coroutines.runBlocking
@@ -8,7 +8,7 @@ fun main(): Unit =
         val apiKey = System.getenv("OPENAI_API_KEY") // or Anthropic, Google, OpenRouter, etc.
 
         val agent =
-            simpleSingleRunAgent(
+            AIAgent(
                 executor = simpleOpenAIExecutor(apiKey), // or Anthropic, Google, OpenRouter, etc.
                 systemPrompt = "You are a helpful assistant. Answer user questions concisely.",
                 llmModel = OpenAIModels.Chat.GPT4o,
