@@ -16,7 +16,7 @@ import ai.koog.agents.core.tools.ToolParameterDescriptor
 import ai.koog.agents.core.tools.ToolParameterType
 import ai.koog.agents.core.tools.ToolRegistry
 import ai.koog.agents.core.tools.ToolResult
-import ai.koog.agents.local.features.eventHandler.feature.EventHandler
+import ai.koog.agents.features.eventHandler.feature.EventHandler
 import ai.koog.prompt.dsl.Prompt
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor

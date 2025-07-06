@@ -12,9 +12,9 @@ import ai.koog.agents.core.dsl.extension.nodeLLMSendToolResult
 import ai.koog.agents.core.dsl.extension.onAssistantMessage
 import ai.koog.agents.core.dsl.extension.onToolCall
 import ai.koog.agents.core.environment.ReceivedToolResult
-import ai.koog.agents.local.memory.feature.history.RetrieveFactsFromHistory
-import ai.koog.agents.local.memory.model.Concept
-import ai.koog.agents.local.memory.model.FactType
+import ai.koog.agents.memory.feature.history.RetrieveFactsFromHistory
+import ai.koog.agents.memory.model.Concept
+import ai.koog.agents.memory.model.FactType
 import ai.koog.prompt.message.Message
 
 object HistoryCompression {
