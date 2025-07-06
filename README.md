@@ -1,6 +1,6 @@
 # Koog Playground
 
-![Kotlin Koog](https://img.shields.io/badge/Kotlin%20Koog%20v0.1.0-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white)
+![Kotlin Koog](https://img.shields.io/badge/Kotlin%20Koog%20v0.2.1-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white)
 
 This repository contains examples and utilities for working with the Koog AI agent framework.
 
@@ -14,9 +14,14 @@ Koog Playground is a project that demonstrates various capabilities of the Koog 
 - Tool sets for extending agent capabilities
 - Utility functions
 
+## Koog Links
+
+- https://github.com/JetBrains/koog
+- https://docs.koog.ai/
+
 ## Version
 
-Current version: 1.0-SNAPSHOT
+Current version: `0.2.1`
 
 ## Project Structure
 
