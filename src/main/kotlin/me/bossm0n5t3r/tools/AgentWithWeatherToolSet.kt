@@ -1,8 +1,8 @@
 package me.bossm0n5t3r.tools
 
+import ai.koog.agents.core.agent.AIAgent
 import ai.koog.agents.core.tools.ToolRegistry
 import ai.koog.agents.core.tools.reflect.asTools
-import ai.koog.agents.ext.agent.simpleSingleRunAgent
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
 import kotlinx.coroutines.runBlocking
@@ -18,7 +18,7 @@ class AgentWithWeatherToolSet(
             // Create an agent with your tools
 
             val agent =
-                simpleSingleRunAgent(
+                AIAgent(
                     executor = simpleOpenAIExecutor(openAIApiKey),
                     llmModel = OpenAIModels.Reasoning.GPT4oMini,
                     systemPrompt = "Provide weather information for a given location.",

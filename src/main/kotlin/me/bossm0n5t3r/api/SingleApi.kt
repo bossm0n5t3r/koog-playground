@@ -1,7 +1,7 @@
 package me.bossm0n5t3r.api
 
+import ai.koog.agents.core.agent.AIAgent
 import ai.koog.agents.core.tools.ToolRegistry
-import ai.koog.agents.ext.agent.simpleSingleRunAgent
 import ai.koog.agents.ext.tool.SayToUser
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
@@ -22,7 +22,7 @@ class SingleApi(
 
     suspend fun createSingleRunAgentAndRun() {
         val agent =
-            simpleSingleRunAgent(
+            AIAgent(
                 executor = simpleOpenAIExecutor(openAIApiKey),
                 systemPrompt = "You are a code assistant. Provide concise code examples.",
                 llmModel = OpenAIModels.Chat.GPT4o,
@@ -40,7 +40,7 @@ class SingleApi(
             }
 
         val agent =
-            simpleSingleRunAgent(
+            AIAgent(
                 executor = simpleOpenAIExecutor(openAIApiKey),
                 toolRegistry = toolRegistry,
                 systemPrompt = "You are a helpful assistant. Answer user questions concisely.",
