@@ -6,6 +6,7 @@ import me.bossm0n5t3r.agent.AIAgentSample
 import me.bossm0n5t3r.api.PromptApi
 import me.bossm0n5t3r.api.SingleApi
 import me.bossm0n5t3r.mcp.GoogleMaps
+import me.bossm0n5t3r.mcp.Playwright
 import me.bossm0n5t3r.strategies.StructuredDataProcessing
 import me.bossm0n5t3r.tools.AgentWithWeatherToolSet
 import org.koin.core.qualifier.named
@@ -59,4 +60,6 @@ val appModule =
         single { StructuredDataProcessing(get(qualifier = named(OPENAI_API_KEY))) }
 
         single { GoogleMaps(get(qualifier = named(OPENAI_API_KEY)), get(qualifier = named(GOOGLE_MAPS_API_KEY))) }
+
+        single { Playwright(get(qualifier = named(GOOGLE_AI_STUDIO_API_KEY))) }
     }
