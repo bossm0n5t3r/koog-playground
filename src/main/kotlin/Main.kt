@@ -3,6 +3,7 @@ import me.bossm0n5t3r.api.PromptApi
 import me.bossm0n5t3r.api.SingleApi
 import me.bossm0n5t3r.di.appModule
 import me.bossm0n5t3r.mcp.GoogleMaps
+import me.bossm0n5t3r.mcp.Playwright
 import me.bossm0n5t3r.strategies.StructuredDataProcessing
 import me.bossm0n5t3r.tools.AgentWithWeatherToolSet
 import org.koin.core.context.startKoin
@@ -42,6 +43,10 @@ suspend fun main() {
             "Google Maps" to {
                 val googleMaps: GoogleMaps by inject(GoogleMaps::class.java)
                 googleMaps.run()
+            },
+            "Playwright" to {
+                val playwright: Playwright by inject(Playwright::class.java)
+                playwright.run()
             },
         )
 
