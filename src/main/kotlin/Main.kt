@@ -2,6 +2,7 @@ import me.bossm0n5t3r.agent.AIAgentSample
 import me.bossm0n5t3r.api.PromptApi
 import me.bossm0n5t3r.api.SingleApi
 import me.bossm0n5t3r.di.appModule
+import me.bossm0n5t3r.mcp.GoogleMaps
 import me.bossm0n5t3r.strategies.StructuredDataProcessing
 import me.bossm0n5t3r.tools.AgentWithWeatherToolSet
 import org.koin.core.context.startKoin
@@ -37,6 +38,10 @@ suspend fun main() {
             "StructuredDataProcessing" to {
                 val processor: StructuredDataProcessing by inject(StructuredDataProcessing::class.java)
                 processor.main()
+            },
+            "Google Maps" to {
+                val googleMaps: GoogleMaps by inject(GoogleMaps::class.java)
+                googleMaps.run()
             },
         )
 
