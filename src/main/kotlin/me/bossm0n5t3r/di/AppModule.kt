@@ -39,27 +39,27 @@ val appModule =
         }
 
         // Provide clients
-        single {
+        single(createdAtStart = false) {
             OpenAILLMClient(get(qualifier = named(OPENAI_API_KEY)))
         }
 
-        single {
+        single(createdAtStart = false) {
             GoogleLLMClient(get(qualifier = named(GOOGLE_AI_STUDIO_API_KEY)))
         }
 
-        single {
+        factory {
             PromptApi(get(qualifier = named(OPENAI_API_KEY)), get(), get())
         }
 
-        single { SingleApi(get(qualifier = named(OPENAI_API_KEY))) }
+        factory { SingleApi(get(qualifier = named(OPENAI_API_KEY))) }
 
-        single { AIAgentSample(get(qualifier = named(OPENAI_API_KEY))) }
+        factory { AIAgentSample(get(qualifier = named(OPENAI_API_KEY))) }
 
-        single { AgentWithWeatherToolSet(get(qualifier = named(OPENAI_API_KEY))) }
+        factory { AgentWithWeatherToolSet(get(qualifier = named(OPENAI_API_KEY))) }
 
-        single { StructuredDataProcessing(get(qualifier = named(OPENAI_API_KEY))) }
+        factory { StructuredDataProcessing(get(qualifier = named(OPENAI_API_KEY))) }
 
-        single { GoogleMaps(get(qualifier = named(OPENAI_API_KEY)), get(qualifier = named(GOOGLE_MAPS_API_KEY))) }
+        factory { GoogleMaps(get(qualifier = named(OPENAI_API_KEY)), get(qualifier = named(GOOGLE_MAPS_API_KEY))) }
 
-        single { Playwright(get(qualifier = named(GOOGLE_AI_STUDIO_API_KEY))) }
+        factory { Playwright(get(qualifier = named(GOOGLE_AI_STUDIO_API_KEY))) }
     }
