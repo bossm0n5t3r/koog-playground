@@ -9,6 +9,7 @@ koin-bom-version = "4.1.0"
 kotlinx-serialization-version = "1.9.0"
 kotlinx-coroutines-version = "1.10.2"
 mockk-version = "1.14.4"
+logback-classic-version = "1.5.18"
 
 [libraries]
 
@@ -27,6 +28,9 @@ kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", versi
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-version" }
 koog-agents-test = { module = "ai.koog:agents-test", version.ref = "koog-version" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk-version" }
+
+# Logback Classic
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback-classic-version" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }

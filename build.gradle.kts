@@ -23,6 +23,8 @@ dependencies {
     implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.logback.classic)
+
     testImplementation(libs.kotlin.test.junit5)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.koog.agents.test)
