@@ -4,6 +4,7 @@ import ai.koog.agents.core.agent.AIAgent
 import ai.koog.agents.mcp.McpToolRegistryProvider
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
+import me.bossm0n5t3r.LOGGER
 
 class GoogleMaps(
     private val openAIApiToken: String,
@@ -34,6 +35,6 @@ class GoogleMaps(
                 llmModel = OpenAIModels.Chat.GPT4o,
                 toolRegistry = toolRegistry,
             )
-        println(agent.runAndGetResult("Get elevation of the Jetbrains Office in Munich, Germany?"))
+        LOGGER.info(agent.runAndGetResult("Get elevation of the Jetbrains Office in Munich, Germany?"))
     }
 }
