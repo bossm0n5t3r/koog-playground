@@ -2,10 +2,19 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.ktlint)
+    application
 }
 
 group = "me.bossm0n5t3r"
 version = "1.0-SNAPSHOT"
+
+application {
+    mainClass.set("MainKt")
+}
+
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
+}
 
 repositories {
     mavenCentral()
