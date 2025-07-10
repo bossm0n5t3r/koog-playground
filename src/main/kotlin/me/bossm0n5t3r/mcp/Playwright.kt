@@ -6,6 +6,7 @@ import ai.koog.agents.mcp.McpToolRegistryProvider
 import ai.koog.prompt.executor.clients.google.GoogleModels
 import ai.koog.prompt.executor.llms.all.simpleGoogleAIExecutor
 import kotlinx.coroutines.delay
+import me.bossm0n5t3r.LOGGER
 import java.io.IOException
 import java.net.ConnectException
 
@@ -54,14 +55,14 @@ class Playwright(
      * @throws IOException If the process fails to start.
      */
     private fun startPlaywrightMcpServer(port: Int = DEFAULT_MCP_PORT): Process {
-        println("Starting Playwright MCP server on port $port...")
+        LOGGER.info("Starting Playwright MCP server on port $port...")
         return ProcessBuilder(
             "npx",
             "@playwright/mcp@latest",
             "--port",
             port.toString(),
         ).start().also {
-            println("Playwright MCP server process started")
+            LOGGER.info("Playwright MCP server process started")
         }
     }
 
@@ -71,7 +72,7 @@ class Playwright(
      * @param toolRegistry The tool registry containing the Playwright MCP tools.
      */
     private suspend fun executeBrowserTask(toolRegistry: ToolRegistry) {
-        println("Creating AI agent for browser automation...")
+        LOGGER.info("Creating AI agent for browser automation...")
         val agent =
             AIAgent(
                 executor = simpleGoogleAIExecutor(googleAIStudioApiKey),
@@ -79,9 +80,9 @@ class Playwright(
                 toolRegistry = toolRegistry,
             )
 
-        println("Executing browser automation task...")
+        LOGGER.info("Executing browser automation task...")
         agent.run("Open a browser, navigate to jetbrains.com, accept all cookies, click AI in toolbar")
-        println("Browser automation task completed")
+        LOGGER.info("Browser automation task completed")
     }
 
     /**
@@ -98,22 +99,22 @@ class Playwright(
         retries: Int = DEFAULT_CONNECTION_RETRIES,
         delayMillis: Long = DEFAULT_RETRY_DELAY_MS,
     ): ToolRegistry {
-        println("Attempting to connect to Playwright MCP server at $url...")
+        LOGGER.info("Attempting to connect to Playwright MCP server at $url...")
         var lastException: Exception? = null
 
         for (attempt in 1..retries) {
             try {
                 val transport = McpToolRegistryProvider.defaultSseTransport(url)
                 val toolRegistry = McpToolRegistryProvider.fromTransport(transport)
-                println("Successfully connected to Playwright MCP server")
+                LOGGER.info("Successfully connected to Playwright MCP server")
                 return toolRegistry
             } catch (e: Exception) {
                 if (isConnectException(e)) {
                     lastException = e
-                    println("Connection to Playwright MCP server failed (attempt $attempt/$retries). Retrying in ${delayMillis}ms...")
+                    LOGGER.warn("Connection to Playwright MCP server failed (attempt $attempt/$retries). Retrying in ${delayMillis}ms...")
                     delay(delayMillis)
                 } else {
-                    println("Unexpected error while connecting to Playwright MCP server: ${e.message}")
+                    LOGGER.error("Unexpected error while connecting to Playwright MCP server: ${e.message}")
                     throw e // Re-throw exceptions that are not related to connection refusal
                 }
             }
