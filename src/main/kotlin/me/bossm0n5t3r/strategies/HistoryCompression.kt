@@ -48,14 +48,14 @@ object HistoryCompression {
 
     object HistoryCompressionStrategies {
         val wholeHistoryStrategy =
-            strategy("whole-history-strategy") {
+            strategy<String, String>("whole-history-strategy") {
                 val compressHistory by nodeLLMCompressHistory<ReceivedToolResult>(
                     strategy = HistoryCompressionStrategy.WholeHistory,
                 )
             }
 
         val memoryPreservationDuringCompressionStrategy =
-            strategy("memory-preservation-during-compression") {
+            strategy<String, String>("memory-preservation-during-compression") {
                 val compressHistory by nodeLLMCompressHistory<ReceivedToolResult>(
                     strategy = HistoryCompressionStrategy.WholeHistory,
                     preserveMemory = true,
@@ -63,21 +63,21 @@ object HistoryCompression {
             }
 
         val fromLastNMessagesStrategy =
-            strategy("from-last-n-messages") {
+            strategy<String, String>("from-last-n-messages") {
                 val compressHistory by nodeLLMCompressHistory<ReceivedToolResult>(
                     strategy = HistoryCompressionStrategy.FromLastNMessages(100),
                 )
             }
 
         val chunkedStrategy =
-            strategy("chunked-strategy") {
+            strategy<String, String>("chunked-strategy") {
                 val compressHistory by nodeLLMCompressHistory<ReceivedToolResult>(
                     strategy = HistoryCompressionStrategy.Chunked(100),
                 )
             }
 
         val retrieveFactsFromHistoryStrategy =
-            strategy("retrieve-facts-from-history") {
+            strategy<String, String>("retrieve-facts-from-history") {
                 val compressHistory by nodeLLMCompressHistory<ReceivedToolResult>(
                     strategy =
                         RetrieveFactsFromHistory(
