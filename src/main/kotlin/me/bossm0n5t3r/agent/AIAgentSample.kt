@@ -2,7 +2,6 @@ package me.bossm0n5t3r.agent
 
 import ai.koog.agents.core.agent.AIAgent
 import ai.koog.agents.core.agent.config.AIAgentConfig
-import ai.koog.agents.core.agent.entity.AIAgentStrategy
 import ai.koog.agents.core.dsl.builder.forwardTo
 import ai.koog.agents.core.dsl.builder.strategy
 import ai.koog.agents.core.dsl.extension.nodeExecuteTool
@@ -10,6 +9,8 @@ import ai.koog.agents.core.dsl.extension.nodeLLMRequest
 import ai.koog.agents.core.dsl.extension.nodeLLMSendToolResult
 import ai.koog.agents.core.dsl.extension.onAssistantMessage
 import ai.koog.agents.core.dsl.extension.onToolCall
+import ai.koog.agents.core.feature.handler.AgentFinishedContext
+import ai.koog.agents.core.feature.handler.AgentStartContext
 import ai.koog.agents.core.tools.Tool
 import ai.koog.agents.core.tools.ToolDescriptor
 import ai.koog.agents.core.tools.ToolParameterDescriptor
@@ -140,14 +141,14 @@ class AIAgentSample(
             strategy = agentStrategy,
             agentConfig = agentConfig,
             toolRegistry = toolRegistry,
+            // install the EventHandler feature
             installFeatures = {
-                // install the EventHandler feature
                 install(EventHandler) {
-                    onBeforeAgentStarted = { strategy: AIAgentStrategy, agent: AIAgent ->
-                        println("Starting strategy: ${strategy.name}")
+                    onBeforeAgentStarted { eventContext: AgentStartContext<*> ->
+                        println("Starting strategy: ${eventContext.strategy.name}")
                     }
-                    onAgentFinished = { strategyName: String, result: String? ->
-                        println("Result: $result")
+                    onAgentFinished { eventContext: AgentFinishedContext ->
+                        println("Result: ${eventContext.result}")
                     }
                 }
             },
