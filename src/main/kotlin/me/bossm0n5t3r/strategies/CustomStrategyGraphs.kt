@@ -30,7 +30,7 @@ class CustomStrategyGraphs {
     fun toneStrategy(
         name: String,
         toolRegistry: ToolRegistry,
-    ): AIAgentStrategy =
+    ): AIAgentStrategy<String, String> =
         strategy(name) {
             val nodeSendInput by nodeLLMRequest()
             val nodeExecuteTool by nodeExecuteTool()

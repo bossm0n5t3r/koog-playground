@@ -11,7 +11,7 @@ import ai.koog.agents.core.dsl.extension.onToolCall
 import ai.koog.agents.core.tools.ToolRegistry
 
 class PredefinedStrategiesAndCommonStrategyPatterns {
-    fun singleRunStrategy(): AIAgentStrategy =
+    fun singleRunStrategy(): AIAgentStrategy<String, String> =
         strategy("single_run") {
             val nodeCallLLM by nodeLLMRequest("sendInput")
             val nodeExecuteTool by nodeExecuteTool("nodeExecuteTool")
@@ -28,7 +28,7 @@ class PredefinedStrategiesAndCommonStrategyPatterns {
     fun toolBasedStrategy(
         name: String,
         toolRegistry: ToolRegistry,
-    ): AIAgentStrategy =
+    ): AIAgentStrategy<String, String> =
         strategy(name) {
             val nodeSendInput by nodeLLMRequest()
             val nodeExecuteTool by nodeExecuteTool()
