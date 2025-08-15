@@ -21,7 +21,7 @@ Koog Playground is a project that demonstrates various capabilities of the Koog 
 
 ## Version
 
-Current version: `0.2.1`
+Current version: `0.3.0`
 
 ## Project Structure
 
