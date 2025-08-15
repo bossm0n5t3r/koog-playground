@@ -29,6 +29,6 @@ class AgentWithWeatherToolSet(
                 )
 
             // The agent can now use your weather tools
-            println(agent.runAndGetResult("What's the weather like in New York?"))
+            println(agent.run("What's the weather like in New York?"))
         }
 }

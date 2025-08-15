@@ -114,10 +114,8 @@ class StructuredDataProcessing(
                 )
 
             executeWithTitle("Structured data processing") {
-                val responseString = runner.runAndGetResult("Get weather forecast for Paris")
+                val responseString = runner.run("Get weather forecast for Paris")
                 println(responseString)
-
-                if (responseString == null) return@executeWithTitle
 
                 val regex = Regex("""raw=\[(.|\n)*]""")
                 val rawMatch = regex.find(responseString)

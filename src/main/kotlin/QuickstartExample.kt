@@ -14,6 +14,6 @@ fun main(): Unit =
                 llmModel = OpenAIModels.Chat.GPT4o,
             )
 
-        val result = agent.runAndGetResult("Hello! How can you help me?")
+        val result = agent.run("Hello! How can you help me?")
         println(result)
     }

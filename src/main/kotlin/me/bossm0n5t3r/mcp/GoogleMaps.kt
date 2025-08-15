@@ -35,6 +35,6 @@ class GoogleMaps(
                 llmModel = OpenAIModels.Chat.GPT4o,
                 toolRegistry = toolRegistry,
             )
-        LOGGER.info(agent.runAndGetResult("Get elevation of the Jetbrains Office in Munich, Germany?"))
+        LOGGER.info(agent.run("Get elevation of the Jetbrains Office in Munich, Germany?"))
     }
 }
