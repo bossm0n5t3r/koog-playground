@@ -12,6 +12,7 @@ import ai.koog.agents.core.dsl.extension.onToolCall
 import ai.koog.agents.core.feature.handler.AgentFinishedContext
 import ai.koog.agents.core.feature.handler.AgentStartContext
 import ai.koog.agents.core.tools.Tool
+import ai.koog.agents.core.tools.ToolArgs
 import ai.koog.agents.core.tools.ToolDescriptor
 import ai.koog.agents.core.tools.ToolParameterDescriptor
 import ai.koog.agents.core.tools.ToolParameterType
@@ -91,7 +92,7 @@ class AIAgentSample(
         data class Args(
             val num1: Int,
             val num2: Int,
-        ) : Tool.Args
+        ) : ToolArgs
 
         @Serializable
         data class Result(
