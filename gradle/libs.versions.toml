@@ -1,14 +1,14 @@
 [versions]
-kotlin-version = "2.2.0"
-ktlint-gradle-version = "12.3.0"
-ktlint-version = "1.6.0"
+kotlin-version = "2.2.10"
+ktlint-gradle-version = "13.0.0"
+ktlint-version = "1.7.1"
 jdk-version = "21"
 koog-maven-url = "https://packages.jetbrains.team/maven/p/grazi/grazie-platform-public"
-koog-version = "0.2.1"
+koog-version = "0.3.0"
 koin-bom-version = "4.1.0"
 kotlinx-serialization-version = "1.9.0"
 kotlinx-coroutines-version = "1.10.2"
-mockk-version = "1.14.4"
+mockk-version = "1.14.5"
 logback-classic-version = "1.5.18"
 
 [libraries]
