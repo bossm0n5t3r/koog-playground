@@ -7,3 +7,8 @@
 
 - [https://langfuse.com/](https://langfuse.com/)
 - [https://github.com/langfuse/langfuse](https://github.com/langfuse/langfuse)
+
+### Self-host
+
+- Run Langfuse locally using Docker Compose
+- [docker-compose.yml](https://github.com/langfuse/langfuse/blob/main/docker-compose.yml)
