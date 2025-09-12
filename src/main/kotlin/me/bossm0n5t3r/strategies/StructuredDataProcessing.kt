@@ -11,8 +11,11 @@ import ai.koog.prompt.dsl.prompt
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
 import ai.koog.prompt.message.Message
-import ai.koog.prompt.structure.json.JsonSchemaGenerator
+import ai.koog.prompt.structure.StructureFixingParser
+import ai.koog.prompt.structure.StructuredOutput
+import ai.koog.prompt.structure.StructuredOutputConfig
 import ai.koog.prompt.structure.json.JsonStructuredData
+import ai.koog.prompt.structure.json.generator.BasicJsonSchemaGenerator
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -53,10 +56,9 @@ class StructuredDataProcessing(
 
             // Generate JSON Schema
             val forecastsStructure =
-                JsonStructuredData.createJsonStructure<List<SimpleWeatherForecast>>(
-                    schemaFormat = JsonSchemaGenerator.SchemaFormat.JsonSchema,
-                    examples = listOf(exampleForecasts),
-                    schemaType = JsonStructuredData.JsonSchemaType.SIMPLE,
+                JsonStructuredData.createJsonStructure<SimpleWeatherForecast>(
+                    schemaGenerator = BasicJsonSchemaGenerator.Default,
+                    examples = exampleForecasts,
                 )
 
             // Define the agent strategy
@@ -68,8 +70,15 @@ class StructuredDataProcessing(
                         val structuredResponse =
                             llm.writeSession {
                                 this.requestLLMStructured(
-                                    structure = forecastsStructure,
-                                    fixingModel = OpenAIModels.Chat.GPT4o,
+                                    config =
+                                        StructuredOutputConfig(
+                                            default = StructuredOutput.Manual(forecastsStructure),
+                                            fixingParser =
+                                                StructureFixingParser(
+                                                    fixingModel = OpenAIModels.Chat.GPT4o,
+                                                    retries = 3,
+                                                ),
+                                        ),
                                 )
                             }
 
