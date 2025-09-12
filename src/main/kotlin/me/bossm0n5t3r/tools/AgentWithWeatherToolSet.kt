@@ -20,7 +20,7 @@ class AgentWithWeatherToolSet(
             val agent =
                 AIAgent(
                     executor = simpleOpenAIExecutor(openAIApiKey),
-                    llmModel = OpenAIModels.Reasoning.GPT4oMini,
+                    llmModel = OpenAIModels.Reasoning.O4Mini,
                     systemPrompt = "Provide weather information for a given location.",
                     toolRegistry =
                         ToolRegistry {
