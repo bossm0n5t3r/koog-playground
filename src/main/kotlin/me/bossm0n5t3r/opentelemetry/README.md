@@ -13,3 +13,4 @@
 
 - Run Langfuse locally using Docker Compose
 - [docker-compose.yml](https://github.com/langfuse/langfuse/blob/main/docker-compose.yml)
+- [Headless Initialization](https://langfuse.com/self-hosting/administration/headless-initialization)
