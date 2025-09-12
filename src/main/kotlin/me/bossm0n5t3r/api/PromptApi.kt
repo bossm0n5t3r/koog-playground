@@ -7,7 +7,6 @@ import ai.koog.prompt.executor.clients.google.GoogleModels
 import ai.koog.prompt.executor.clients.openai.OpenAILLMClient
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
-import ai.koog.prompt.executor.model.PromptExecutorExt.execute
 import ai.koog.prompt.params.LLMParams
 import me.bossm0n5t3r.me.bossm0n5t3r.utils.executeWithTitle
 
@@ -50,7 +49,7 @@ class PromptApi(
                 model = OpenAIModels.Chat.GPT4o,
             )
 
-        return response.content
+        return response.joinToString { it.content }
     }
 
     suspend fun executePrompt(
