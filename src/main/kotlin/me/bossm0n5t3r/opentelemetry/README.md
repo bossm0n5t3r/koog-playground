@@ -5,6 +5,7 @@
 
 ## Langfuse
 
+- [https://docs.koog.ai/opentelemetry-langfuse-exporter/]
 - [https://langfuse.com/](https://langfuse.com/)
 - [https://github.com/langfuse/langfuse](https://github.com/langfuse/langfuse)
 
