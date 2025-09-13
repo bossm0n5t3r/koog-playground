@@ -1,12 +1,13 @@
 # Koog Playground
 
-![Kotlin Koog](https://img.shields.io/badge/Kotlin%20Koog%20v0.2.1-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white)
+![Kotlin Koog](https://img.shields.io/badge/Kotlin%20Koog%20v0.4.1-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white)
 
 This repository contains examples and utilities for working with the Koog AI agent framework.
 
 ## Overview
 
-Koog Playground is a project that demonstrates various capabilities of the Koog framework for building AI agents. It includes examples of:
+Koog Playground is a project that demonstrates various capabilities of the Koog framework for building AI agents. It
+includes examples of:
 
 - AI agents implementation
 - Strategy patterns for AI interactions
@@ -25,14 +26,42 @@ Current version: `0.3.0`
 
 ## Project Structure
 
+### Main Source Code
+- `src/main/kotlin/Main.kt` - Main application entry point
+- `src/main/kotlin/QuickstartExample.kt` - Quick start example for the Koog framework
+- `src/main/kotlin/me/bossm0n5t3r/LoggerExtension.kt` - Logger utility extensions
+
+### Core Modules
 - `src/main/kotlin/me/bossm0n5t3r/agent/` - AI agent implementations
+  - `AIAgentSample.kt` - Sample AI agent implementation
 - `src/main/kotlin/me/bossm0n5t3r/api/` - API integration examples
+  - `PromptApi.kt` - Prompt API integration
+  - `SingleApi.kt` - Single API call examples
+- `src/main/kotlin/me/bossm0n5t3r/di/` - Dependency injection configuration
+  - `AppModule.kt` - Koin dependency injection module
 - `src/main/kotlin/me/bossm0n5t3r/mcp/` - Model Context Protocol implementations
-  - Google Maps integration for location-based queries
-  - Playwright for browser automation tasks
+  - `GoogleMaps.kt` - Google Maps integration for location-based queries
+  - `Playwright.kt` - Playwright for browser automation tasks
+- `src/main/kotlin/me/bossm0n5t3r/opentelemetry/` - OpenTelemetry and observability
+  - `langfuse/` - Langfuse tracing integration
+    - `AgentWithLangfuseTracing.kt` - Agent with Langfuse tracing capabilities
+    - `docker-compose.yml` - Docker setup for Langfuse
 - `src/main/kotlin/me/bossm0n5t3r/strategies/` - Strategy patterns for AI interactions
+  - `CustomStrategyGraphs.kt` - Custom strategy graph implementations
+  - `HistoryCompression.kt` - History compression strategies
+  - `PredefinedStrategiesAndCommonStrategyPatterns.kt` - Common strategy patterns
+  - `StructuredDataProcessing.kt` - Structured data processing strategies
 - `src/main/kotlin/me/bossm0n5t3r/tools/` - Tool sets for extending agent capabilities
+  - `AgentWithWeatherToolSet.kt` - Agent with weather tool integration
+  - `DiagnosticToolSet.kt` - Diagnostic tools for debugging
+  - `MyToolSet.kt` - Custom tool set implementation
+  - `WeatherToolSet.kt` - Weather-related tools
 - `src/main/kotlin/me/bossm0n5t3r/utils/` - Utility functions
+  - `Helper.kt` - Helper utilities
+
+### Test Code
+- `src/test/kotlin/me/bossm0n5t3r/api/` - API tests
+  - `PromptApiTest.kt` - Tests for Prompt API
 
 ## Getting Started
 
@@ -86,6 +115,7 @@ The application provides an interactive menu to run different examples:
 3. Follow the prompts for the selected example.
 
 Each example demonstrates different capabilities of the Koog framework:
+
 - **PromptApi**: Shows how to use the prompt API for generating responses
 - **SingleApi**: Demonstrates single API calls to LLM models
 - **AIAgent**: Basic AI agent implementation
@@ -97,6 +127,7 @@ Each example demonstrates different capabilities of the Koog framework:
 ## Dependencies
 
 This project uses:
+
 - Koog Agents library
 - Koin for dependency injection
 - KotlinX Serialization for JSON handling
