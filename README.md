@@ -20,18 +20,16 @@ includes examples of:
 - https://github.com/JetBrains/koog
 - https://docs.koog.ai/
 
-## Version
-
-Current version: `0.3.0`
-
 ## Project Structure
 
 ### Main Source Code
+
 - `src/main/kotlin/Main.kt` - Main application entry point
 - `src/main/kotlin/QuickstartExample.kt` - Quick start example for the Koog framework
 - `src/main/kotlin/me/bossm0n5t3r/LoggerExtension.kt` - Logger utility extensions
 
 ### Core Modules
+
 - `src/main/kotlin/me/bossm0n5t3r/agent/` - AI agent implementations
   - `AIAgentSample.kt` - Sample AI agent implementation
 - `src/main/kotlin/me/bossm0n5t3r/api/` - API integration examples
@@ -60,6 +58,7 @@ Current version: `0.3.0`
   - `Helper.kt` - Helper utilities
 
 ### Test Code
+
 - `src/test/kotlin/me/bossm0n5t3r/api/` - API tests
   - `PromptApiTest.kt` - Tests for Prompt API
 
