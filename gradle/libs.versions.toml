@@ -1,7 +1,7 @@
 [versions]
 kotlin-version = "2.2.20"
 ktlint-gradle-version = "13.0.0"
-ktlint-version = "1.7.1"
+ktlint-version = "1.6.0"
 jdk-version = "21"
 koog-maven-url = "https://packages.jetbrains.team/maven/p/grazi/grazie-platform-public"
 koog-version = "0.4.1"
