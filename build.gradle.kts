@@ -18,13 +18,6 @@ tasks.named<JavaExec>("run") {
 
 repositories {
     mavenCentral()
-    maven {
-        url =
-            uri(
-                libs.versions.koog.maven.url
-                    .get(),
-            )
-    }
 }
 
 dependencies {
