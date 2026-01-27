@@ -1,6 +1,6 @@
 package me.bossm0n5t3r.strategies
 
-import ai.koog.agents.core.agent.entity.AIAgentStrategy
+import ai.koog.agents.core.agent.entity.AIAgentGraphStrategy
 import ai.koog.agents.core.dsl.builder.forwardTo
 import ai.koog.agents.core.dsl.builder.strategy
 import ai.koog.agents.core.dsl.extension.nodeExecuteTool
@@ -11,7 +11,7 @@ import ai.koog.agents.core.dsl.extension.onToolCall
 import ai.koog.agents.core.tools.ToolRegistry
 
 class PredefinedStrategiesAndCommonStrategyPatterns {
-    fun singleRunStrategy(): AIAgentStrategy<String, String> =
+    fun singleRunStrategy(): AIAgentGraphStrategy<String, String> =
         strategy("single_run") {
             val nodeCallLLM by nodeLLMRequest("sendInput")
             val nodeExecuteTool by nodeExecuteTool("nodeExecuteTool")
@@ -28,7 +28,7 @@ class PredefinedStrategiesAndCommonStrategyPatterns {
     fun toolBasedStrategy(
         name: String,
         toolRegistry: ToolRegistry,
-    ): AIAgentStrategy<String, String> =
+    ): AIAgentGraphStrategy<String, String> =
         strategy(name) {
             val nodeSendInput by nodeLLMRequest()
             val nodeExecuteTool by nodeExecuteTool()

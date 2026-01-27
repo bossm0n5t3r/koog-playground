@@ -19,7 +19,7 @@ fun main() =
 
         val agent =
             AIAgent(
-                executor = simpleGoogleAIExecutor(apiKey),
+                promptExecutor = simpleGoogleAIExecutor(apiKey),
                 llmModel = GoogleModels.Gemini2_5Flash,
                 systemPrompt = "You are a code assistant. Provide concise code examples.",
             ) {

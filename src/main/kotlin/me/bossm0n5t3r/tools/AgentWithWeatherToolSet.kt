@@ -19,8 +19,8 @@ class AgentWithWeatherToolSet(
 
             val agent =
                 AIAgent(
-                    executor = simpleOpenAIExecutor(openAIApiKey),
-                    llmModel = OpenAIModels.Reasoning.O4Mini,
+                    promptExecutor = simpleOpenAIExecutor(openAIApiKey),
+                    llmModel = OpenAIModels.Chat.O4Mini,
                     systemPrompt = "Provide weather information for a given location.",
                     toolRegistry =
                         ToolRegistry {

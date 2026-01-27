@@ -11,10 +11,7 @@ import ai.koog.prompt.dsl.prompt
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
 import ai.koog.prompt.message.Message
-import ai.koog.prompt.structure.StructureFixingParser
-import ai.koog.prompt.structure.StructuredOutput
-import ai.koog.prompt.structure.StructuredOutputConfig
-import ai.koog.prompt.structure.json.JsonStructuredData
+import ai.koog.prompt.structure.json.JsonStructure
 import ai.koog.prompt.structure.json.generator.BasicJsonSchemaGenerator
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.SerialName
@@ -55,8 +52,8 @@ class StructuredDataProcessing(
                 )
 
             // Generate JSON Schema
-            val forecastsStructure =
-                JsonStructuredData.createJsonStructure<SimpleWeatherForecast>(
+            val forecastStructure =
+                JsonStructure.create<SimpleWeatherForecast>(
                     schemaGenerator = BasicJsonSchemaGenerator.Default,
                     examples = exampleForecasts,
                 )
@@ -69,17 +66,7 @@ class StructuredDataProcessing(
                     val getStructuredForecast by node<Message.Response, String> { _ ->
                         val structuredResponse =
                             llm.writeSession {
-                                this.requestLLMStructured(
-                                    config =
-                                        StructuredOutputConfig(
-                                            default = StructuredOutput.Manual(forecastsStructure),
-                                            fixingParser =
-                                                StructureFixingParser(
-                                                    fixingModel = OpenAIModels.Chat.GPT4o,
-                                                    retries = 3,
-                                                ),
-                                        ),
-                                )
+                                requestLLMStructured<SimpleWeatherForecast>()
                             }
 
                         """

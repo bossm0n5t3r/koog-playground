@@ -2,6 +2,7 @@ package me.bossm0n5t3r.mcp
 
 import ai.koog.agents.core.agent.AIAgent
 import ai.koog.agents.mcp.McpToolRegistryProvider
+import ai.koog.agents.mcp.defaultStdioTransport
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
 import me.bossm0n5t3r.LOGGER
@@ -31,7 +32,7 @@ class GoogleMaps(
         // Create and run the agent
         val agent =
             AIAgent(
-                executor = simpleOpenAIExecutor(openAIApiToken),
+                promptExecutor = simpleOpenAIExecutor(openAIApiToken),
                 llmModel = OpenAIModels.Chat.GPT4o,
                 toolRegistry = toolRegistry,
             )

@@ -1,6 +1,6 @@
 package me.bossm0n5t3r.strategies
 
-import ai.koog.agents.core.agent.entity.AIAgentStrategy
+import ai.koog.agents.core.agent.entity.AIAgentGraphStrategy
 import ai.koog.agents.core.dsl.builder.forwardTo
 import ai.koog.agents.core.dsl.builder.strategy
 import ai.koog.agents.core.dsl.extension.nodeExecuteTool
@@ -30,7 +30,7 @@ class CustomStrategyGraphs {
     fun toneStrategy(
         name: String,
         toolRegistry: ToolRegistry,
-    ): AIAgentStrategy<String, String> =
+    ): AIAgentGraphStrategy<String, String> =
         strategy(name) {
             val nodeSendInput by nodeLLMRequest()
             val nodeExecuteTool by nodeExecuteTool()

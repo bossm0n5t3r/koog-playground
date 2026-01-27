@@ -5,11 +5,13 @@ import kotlinx.coroutines.runBlocking
 
 fun main(): Unit =
     runBlocking {
-        val apiKey = System.getenv("OPENAI_API_KEY") // or Anthropic, Google, OpenRouter, etc.
+        val apiKey =
+            System.getenv("OPENAI_API_KEY") // or Anthropic, Google, OpenRouter, etc.
+                ?: error("The API key is not set.")
 
         val agent =
             AIAgent(
-                executor = simpleOpenAIExecutor(apiKey), // or Anthropic, Google, OpenRouter, etc.
+                promptExecutor = simpleOpenAIExecutor(apiKey), // or Anthropic, Google, OpenRouter, etc.
                 systemPrompt = "You are a helpful assistant. Answer user questions concisely.",
                 llmModel = OpenAIModels.Chat.GPT4o,
             )

@@ -23,7 +23,7 @@ class SingleApi(
     suspend fun createSingleRunAgentAndRun() {
         val agent =
             AIAgent(
-                executor = simpleOpenAIExecutor(openAIApiKey),
+                promptExecutor = simpleOpenAIExecutor(openAIApiKey),
                 systemPrompt = "You are a code assistant. Provide concise code examples.",
                 llmModel = OpenAIModels.Chat.GPT4o,
             )
@@ -41,7 +41,7 @@ class SingleApi(
 
         val agent =
             AIAgent(
-                executor = simpleOpenAIExecutor(openAIApiKey),
+                promptExecutor = simpleOpenAIExecutor(openAIApiKey),
                 toolRegistry = toolRegistry,
                 systemPrompt = "You are a helpful assistant. Answer user questions concisely.",
                 llmModel = OpenAIModels.Chat.GPT4o,

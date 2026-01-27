@@ -1,6 +1,6 @@
 package me.bossm0n5t3r.strategies
 
-import ai.koog.agents.core.agent.context.AIAgentContextBase
+import ai.koog.agents.core.agent.context.AIAgentContext
 import ai.koog.agents.core.agent.session.AIAgentLLMWriteSession
 import ai.koog.agents.core.dsl.builder.forwardTo
 import ai.koog.agents.core.dsl.builder.strategy
@@ -20,10 +20,10 @@ import ai.koog.prompt.message.Message
 object HistoryCompression {
     object HistoryCompressionInAStrategyGraph {
         // Define that the history is too long if there are more than 100 messages
-        private suspend fun AIAgentContextBase.historyIsTooLong(): Boolean = llm.readSession { prompt.messages.size > 100 }
+        private suspend fun AIAgentContext.historyIsTooLong(): Boolean = llm.readSession { prompt.messages.size > 100 }
 
         val strategy =
-            strategy("execute-with-history-compression") {
+            strategy<String, String>("execute-with-history-compression") {
                 val callLLM by nodeLLMRequest()
                 val executeTool by nodeExecuteTool()
                 val sendToolResult by nodeLLMSendToolResult()
@@ -112,12 +112,14 @@ object HistoryCompression {
     class MyCustomCompressionStrategy : HistoryCompressionStrategy() {
         override suspend fun compress(
             llmSession: AIAgentLLMWriteSession,
-            preserveMemory: Boolean,
             memoryMessages: List<Message>,
         ) {
             // 1. Process the current history in llmSession.prompt.messages
             // 2. Create new compressed messages
             // 3. Update the prompt with the compressed messages
+
+            // Save original messages to preserve them
+            val originalMessages = llmSession.prompt.messages
 
             // Example implementation:
             val importantMessages =
@@ -131,12 +133,12 @@ object HistoryCompression {
             // Or you can change the current model: `llmSession.model = AnthropicModels.Sonnet_3_7` and ask some other LLM model -- but don't forget to change it back after
 
             // Compose the prompt with the filtered messages
-            composePromptWithRequiredMessages(
-                llmSession,
-                importantMessages,
-                preserveMemory,
-                memoryMessages,
-            )
+            val compressedMessages =
+                composeMessageHistory(
+                    originalMessages,
+                    importantMessages,
+                    memoryMessages,
+                )
         }
     }
 }

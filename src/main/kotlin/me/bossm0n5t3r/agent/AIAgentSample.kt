@@ -9,20 +9,17 @@ import ai.koog.agents.core.dsl.extension.nodeLLMRequest
 import ai.koog.agents.core.dsl.extension.nodeLLMSendToolResult
 import ai.koog.agents.core.dsl.extension.onAssistantMessage
 import ai.koog.agents.core.dsl.extension.onToolCall
-import ai.koog.agents.core.feature.handler.AgentFinishedContext
-import ai.koog.agents.core.feature.handler.AgentStartContext
+import ai.koog.agents.core.feature.handler.agent.AgentCompletedContext
+import ai.koog.agents.core.feature.handler.agent.AgentStartingContext
 import ai.koog.agents.core.tools.Tool
-import ai.koog.agents.core.tools.ToolArgs
-import ai.koog.agents.core.tools.ToolDescriptor
-import ai.koog.agents.core.tools.ToolParameterDescriptor
-import ai.koog.agents.core.tools.ToolParameterType
 import ai.koog.agents.core.tools.ToolRegistry
-import ai.koog.agents.core.tools.ToolResult
+import ai.koog.agents.core.tools.annotations.LLMDescription
 import ai.koog.agents.features.eventHandler.feature.EventHandler
 import ai.koog.prompt.dsl.Prompt
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.builtins.serializer
 
 class AIAgentSample(
     openAIApiKey: String,
@@ -86,47 +83,29 @@ class AIAgentSample(
             maxAgentIterations = 10,
         )
 
-    // Implement s simple calculator tool that can add two numbers
-    object CalculatorTool : Tool<CalculatorTool.Args, ToolResult>() {
+    // Implement a simple calculator tool that adds two digits
+    object CalculatorTool : Tool<CalculatorTool.Args, Int>(
+        argsSerializer = Args.serializer(),
+        resultSerializer = Int.serializer(),
+        name = "calculator",
+        description = "A simple calculator that can add two digits (0-9).",
+    ) {
+        // Arguments for the calculator tool
         @Serializable
         data class Args(
-            val num1: Int,
-            val num2: Int,
-        ) : ToolArgs
-
-        @Serializable
-        data class Result(
-            val sum: Int,
-        ) : ToolResult {
-            override fun toStringDefault(): String = "The sum is: $sum"
+            @property:LLMDescription("The first digit to add (0-9)")
+            val digit1: Int,
+            @property:LLMDescription("The second digit to add (0-9)")
+            val digit2: Int,
+        ) {
+            init {
+                require(digit1 in 0..9) { "digit1 must be a single digit (0-9)" }
+                require(digit2 in 0..9) { "digit2 must be a single digit (0-9)" }
+            }
         }
 
-        override val argsSerializer = Args.serializer()
-
-        override val descriptor =
-            ToolDescriptor(
-                name = "calculator",
-                description = "Add two numbers together",
-                requiredParameters =
-                    listOf(
-                        ToolParameterDescriptor(
-                            name = "num1",
-                            description = "First number to add",
-                            type = ToolParameterType.Integer,
-                        ),
-                        ToolParameterDescriptor(
-                            name = "num2",
-                            description = "Second number to add",
-                            type = ToolParameterType.Integer,
-                        ),
-                    ),
-            )
-
-        override suspend fun execute(args: Args): Result {
-            // Perform a simple addition operation
-            val sum = args.num1 + args.num2
-            return Result(sum)
-        }
+        // Function to add two digits
+        override suspend fun execute(args: Args): Int = args.digit1 + args.digit2
     }
 
     // Create the tool to the tool registry
@@ -145,10 +124,10 @@ class AIAgentSample(
             // install the EventHandler feature
             installFeatures = {
                 install(EventHandler) {
-                    onBeforeAgentStarted { eventContext: AgentStartContext<*> ->
-                        println("Starting strategy: ${eventContext.strategy.name}")
+                    onAgentStarting { eventContext: AgentStartingContext ->
+                        println("Starting agent: ${eventContext.agent.id}")
                     }
-                    onAgentFinished { eventContext: AgentFinishedContext ->
+                    onAgentCompleted { eventContext: AgentCompletedContext ->
                         println("Result: ${eventContext.result}")
                     }
                 }

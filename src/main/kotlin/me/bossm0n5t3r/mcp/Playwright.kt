@@ -75,7 +75,7 @@ class Playwright(
         LOGGER.info("Creating AI agent for browser automation...")
         val agent =
             AIAgent(
-                executor = simpleGoogleAIExecutor(googleAIStudioApiKey),
+                promptExecutor = simpleGoogleAIExecutor(googleAIStudioApiKey),
                 llmModel = GoogleModels.Gemini2_0Flash,
                 toolRegistry = toolRegistry,
             )
@@ -120,7 +120,10 @@ class Playwright(
             }
         }
 
-        throw IllegalStateException("Failed to connect to Playwright MCP server at $url after $retries attempts.", lastException)
+        throw IllegalStateException(
+            "Failed to connect to Playwright MCP server at $url after $retries attempts.",
+            lastException,
+        )
     }
 
     /**
