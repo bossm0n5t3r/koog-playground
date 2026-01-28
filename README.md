@@ -1,133 +1,121 @@
 # Koog Playground
 
-![Kotlin Koog](https://img.shields.io/badge/Kotlin%20Koog%20v0.4.1-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white)
+![Kotlin Koog](https://img.shields.io/badge/Kotlin%20Koog%20v0.6.0-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white)
 
-This repository contains examples and utilities for working with the Koog AI agent framework.
+This repository contains examples and utilities for working with
+the [Koog AI agent framework](https://github.com/JetBrains/koog).
 
 ## Overview
 
-Koog Playground is a project that demonstrates various capabilities of the Koog framework for building AI agents. It
-includes examples of:
+Koog Playground demonstrates various capabilities of the Koog framework for building AI agents, including:
 
-- AI agents implementation
-- Strategy patterns for AI interactions
-- API integrations
-- Tool sets for extending agent capabilities
-- Utility functions
+- **AI Agents**: Implementations of autonomous agents.
+- **Strategy Patterns**: Custom graphs, history compression, and structured data processing.
+- **MCP (Model Context Protocol)**: Integrations with Google Maps and Playwright.
+- **Tool Sets**: Extending agent capabilities with weather tools and diagnostics.
+- **Observability**: OpenTelemetry and Langfuse tracing integration.
 
-## Koog Links
+## Requirements
 
-- https://github.com/JetBrains/koog
-- https://docs.koog.ai/
+- **JDK 25** or higher (configured in `libs.versions.toml`)
+- **Gradle** (wrapper included)
+- **Docker** (optional, for Langfuse tracing)
 
 ## Project Structure
 
-### Main Source Code
+```text
+.
+├── build.gradle.kts          # Project build configuration
+├── gradle/libs.versions.toml # Dependency and version management
+├── src
+│   ├── main/kotlin
+│   │   ├── Main.kt           # Main entry point with interactive menu
+│   │   ├── QuickstartExample.kt
+│   │   └── me/bossm0n5t3r
+│   │       ├── agent/        # Agent implementations
+│   │       ├── api/          # LLM API examples
+│   │       ├── di/           # Koin dependency injection
+│   │       ├── mcp/          # Model Context Protocol tools
+│   │       ├── opentelemetry/# Tracing and observability
+│   │       ├── strategies/   # AI interaction strategies
+│   │       ├── tools/        # Agent tool sets
+│   │       └── utils/        # General utilities
+│   └── test/kotlin           # Unit tests
+└── LICENSE
+```
 
-- `src/main/kotlin/Main.kt` - Main application entry point
-- `src/main/kotlin/QuickstartExample.kt` - Quick start example for the Koog framework
-- `src/main/kotlin/me/bossm0n5t3r/LoggerExtension.kt` - Logger utility extensions
+## Setup & Run
 
-### Core Modules
+### 1. Environment Variables
 
-- `src/main/kotlin/me/bossm0n5t3r/agent/` - AI agent implementations
-  - `AIAgentSample.kt` - Sample AI agent implementation
-- `src/main/kotlin/me/bossm0n5t3r/api/` - API integration examples
-  - `PromptApi.kt` - Prompt API integration
-  - `SingleApi.kt` - Single API call examples
-- `src/main/kotlin/me/bossm0n5t3r/di/` - Dependency injection configuration
-  - `AppModule.kt` - Koin dependency injection module
-- `src/main/kotlin/me/bossm0n5t3r/mcp/` - Model Context Protocol implementations
-  - `GoogleMaps.kt` - Google Maps integration for location-based queries
-  - `Playwright.kt` - Playwright for browser automation tasks
-- `src/main/kotlin/me/bossm0n5t3r/opentelemetry/` - OpenTelemetry and observability
-  - `langfuse/` - Langfuse tracing integration
-    - `AgentWithLangfuseTracing.kt` - Agent with Langfuse tracing capabilities
-    - `docker-compose.yml` - Docker setup for Langfuse
-- `src/main/kotlin/me/bossm0n5t3r/strategies/` - Strategy patterns for AI interactions
-  - `CustomStrategyGraphs.kt` - Custom strategy graph implementations
-  - `HistoryCompression.kt` - History compression strategies
-  - `PredefinedStrategiesAndCommonStrategyPatterns.kt` - Common strategy patterns
-  - `StructuredDataProcessing.kt` - Structured data processing strategies
-- `src/main/kotlin/me/bossm0n5t3r/tools/` - Tool sets for extending agent capabilities
-  - `AgentWithWeatherToolSet.kt` - Agent with weather tool integration
-  - `DiagnosticToolSet.kt` - Diagnostic tools for debugging
-  - `MyToolSet.kt` - Custom tool set implementation
-  - `WeatherToolSet.kt` - Weather-related tools
-- `src/main/kotlin/me/bossm0n5t3r/utils/` - Utility functions
-  - `Helper.kt` - Helper utilities
+Create a `.env` file or export the following variables in your terminal:
 
-### Test Code
+```bash
+export OPENAI_API_KEY="your_openai_key"
+export GOOGLE_AI_STUDIO_API_KEY="your_google_ai_key"
+export GOOGLE_MAPS_API_KEY="your_google_maps_key"
+```
 
-- `src/test/kotlin/me/bossm0n5t3r/api/` - API tests
-  - `PromptApiTest.kt` - Tests for Prompt API
+### 2. Build
 
-## Getting Started
+```bash
+./gradlew build
+```
 
-### Prerequisites
+### 3. Run
 
-- JDK 21 or higher
-- Gradle
+The project provides an interactive menu to explore different examples:
 
-### Setup
+```bash
+./gradlew run
+```
 
-1. Clone the repository
-2. Build the project:
+Alternatively, you can run specific examples if they have a `main` function (e.g., `QuickstartExample.kt`).
+
+## Available Examples
+
+When running the application, you can choose from:
+
+1. **PromptApi**: High-level prompt API usage.
+2. **SingleApi**: Direct LLM API calls.
+3. **AIAgent**: Core agent functionality.
+4. **AgentWithWeatherToolSet**: Agent using external tools.
+5. **StructuredDataProcessing**: Extracting structured info using AI.
+6. **Google Maps**: MCP integration for location data.
+7. **Playwright**: MCP integration for browser automation.
+
+### Tracing with Langfuse
+
+To try the Langfuse tracing example:
+
+1. Navigate to `src/main/kotlin/me/bossm0n5t3r/opentelemetry/langfuse/`.
+2. Start Langfuse using Docker:
+   ```bash
+   docker-compose up -d
    ```
-   ./gradlew build
-   ```
-3. Run examples:
-   ```
-   ./gradlew run
-   ```
+3. Configure the `.env` file in that directory with your Langfuse credentials.
+4. Run `AgentWithLangfuseTracing.kt`.
 
-## Examples
+## Scripts
 
-Check out `QuickstartExample.kt` for a simple demonstration of how to use the Koog framework.
+- `./gradlew run`: Start the interactive menu.
+- `./gradlew test`: Run all tests.
+- `./gradlew ktlintCheck`: Check code style.
+- `./gradlew ktlintFormat`: Auto-format code.
 
-## Running the Application
+## Testing
 
-The application provides an interactive menu to run different examples:
+Tests are written using JUnit 5 and MockK.
 
-1. Run the application:
-   ```
-   ./gradlew run
-   ```
+```bash
+./gradlew test
+```
 
-2. Select an example to run from the menu by entering the corresponding number:
-   ```
-   > Task :run
-    00:00:00.249 [main] INFO Application -- Hello, Kotlin!
-    00:00:00.311 [main] INFO Application -- Please select the example to run:
-    00:00:00.314 [main] INFO Application -- 1. PromptApi
-    00:00:00.314 [main] INFO Application -- 2. SingleApi
-    00:00:00.314 [main] INFO Application -- 3. AIAgent
-    00:00:00.314 [main] INFO Application -- 4. AgentWithWeatherToolSet
-    00:00:00.314 [main] INFO Application -- 5. StructuredDataProcessing
-    00:00:00.314 [main] INFO Application -- 6. Google Maps
-    00:00:00.314 [main] INFO Application -- 7. Playwright
-    00:00:00.314 [main] INFO Application -- 0. Exit
-    Enter your choice:
-    <==========---> 83%00:00:00.773 [main] INFO Application --
-   ```
+## Koog Links
 
-3. Follow the prompts for the selected example.
+- [Official Repository](https://github.com/JetBrains/koog)
+- [Documentation](https://docs.koog.ai/)
 
-Each example demonstrates different capabilities of the Koog framework:
+## License
 
-- **PromptApi**: Shows how to use the prompt API for generating responses
-- **SingleApi**: Demonstrates single API calls to LLM models
-- **AIAgent**: Basic AI agent implementation
-- **AgentWithWeatherToolSet**: AI agent with weather-related tools
-- **StructuredDataProcessing**: Processing structured data with AI
-- **Google Maps**: Using Google Maps MCP for location-based queries
-- **Playwright**: Browser automation using Playwright MCP
-
-## Dependencies
-
-This project uses:
-
-- Koog Agents library
-- Koin for dependency injection
-- KotlinX Serialization for JSON handling
-- JUnit 5 and MockK for testing
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
