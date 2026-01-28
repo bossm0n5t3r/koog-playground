@@ -63,22 +63,23 @@ object Application {
             LOGGER.info("0. Exit")
 
             print("Enter your choice: ")
-            val choice = readlnOrNull()?.toIntOrNull()
-
-            when (choice) {
+            when (val choice = readlnOrNull()?.toIntOrNull()) {
                 null -> {
                     LOGGER.info("Invalid input. Please enter a number.")
                 }
+
                 in 1..exampleKeys.size -> {
                     val selectedKey = exampleKeys[choice - 1]
                     LOGGER.info("\n--- Running $selectedKey ---")
                     examples[selectedKey]?.invoke()
                     LOGGER.info("--- $selectedKey finished ---\n")
                 }
+
                 0 -> {
                     LOGGER.info("Exiting.")
                     return // main 함수 종료
                 }
+
                 else -> {
                     LOGGER.info("Invalid choice. Please try again.")
                 }
