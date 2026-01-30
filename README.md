@@ -48,13 +48,34 @@ Koog Playground demonstrates various capabilities of the Koog framework for buil
 
 ### 1. Environment Variables
 
-Create a `.env` file or export the following variables in your terminal:
+You can use the provided setup script to create your `.env` file:
 
 ```bash
-export OPENAI_API_KEY="your_openai_key"
-export GOOGLE_AI_STUDIO_API_KEY="your_google_ai_key"
-export GOOGLE_MAPS_API_KEY="your_google_maps_key"
+./setup-env.sh
 ```
+
+The script will:
+
+- Check if environment variables (like `OPENAI_API_KEY`) are already set in your terminal and suggest them as default
+  values.
+- Allow you to use shell variables by entering them with a `$` prefix (e.g., `$MY_KEY_VAR`).
+- Use default values from `.env.example` if no environment variable or user input is provided.
+
+Alternatively, you can manually create a `.env` file in the project root by copying from `.env.example`:
+
+```bash
+cp .env.example .env
+```
+
+Then edit `.env` and fill in your API keys:
+
+```text
+OPENAI_API_KEY=your_openai_api_key_here
+GOOGLE_AI_STUDIO_API_KEY=your_google_ai_studio_api_key_here
+GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
+```
+
+The project uses a simple custom `.env` loader (`DotenvLoader`) to load these variables.
 
 ### 2. Build
 
@@ -98,6 +119,7 @@ To try the Langfuse tracing example:
 
 ## Scripts
 
+- `./setup-env.sh`: Create or update the `.env` file interactively.
 - `./gradlew run`: Start the interactive menu.
 - `./gradlew test`: Run all tests.
 - `./gradlew ktlintCheck`: Check code style.
