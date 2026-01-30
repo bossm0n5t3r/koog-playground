@@ -7,12 +7,13 @@ import ai.koog.prompt.executor.clients.google.GoogleModels
 import ai.koog.prompt.executor.llms.all.simpleGoogleAIExecutor
 import kotlinx.coroutines.runBlocking
 import me.bossm0n5t3r.di.ENVIRONMENT_VARIABLES_GOOGLE_AI_STUDIO_API_KEY
+import me.bossm0n5t3r.utils.DotenvLoader
 import java.io.File
 
 fun main() =
     runBlocking {
         val apiKey =
-            System.getenv(ENVIRONMENT_VARIABLES_GOOGLE_AI_STUDIO_API_KEY)
+            DotenvLoader[ENVIRONMENT_VARIABLES_GOOGLE_AI_STUDIO_API_KEY]
                 ?: error("$ENVIRONMENT_VARIABLES_GOOGLE_AI_STUDIO_API_KEY environment variable is not set.")
 
         val langfuseProperties = getLangfuseInitialPropertiesFromFile()

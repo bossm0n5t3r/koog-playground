@@ -9,6 +9,7 @@ import me.bossm0n5t3r.mcp.GoogleMaps
 import me.bossm0n5t3r.mcp.Playwright
 import me.bossm0n5t3r.strategies.StructuredDataProcessing
 import me.bossm0n5t3r.tools.AgentWithWeatherToolSet
+import me.bossm0n5t3r.utils.DotenvLoader
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -24,17 +25,17 @@ val appModule =
     module {
         // Provide API keys
         single(qualifier = named(OPENAI_API_KEY)) {
-            System.getenv(ENVIRONMENT_VARIABLES_OPEN_API_KEY)
+            DotenvLoader[ENVIRONMENT_VARIABLES_OPEN_API_KEY]
                 ?: error("$ENVIRONMENT_VARIABLES_OPEN_API_KEY environment variable is not set.")
         }
 
         single(qualifier = named(GOOGLE_AI_STUDIO_API_KEY)) {
-            System.getenv(ENVIRONMENT_VARIABLES_GOOGLE_AI_STUDIO_API_KEY)
+            DotenvLoader[ENVIRONMENT_VARIABLES_GOOGLE_AI_STUDIO_API_KEY]
                 ?: error("$ENVIRONMENT_VARIABLES_GOOGLE_AI_STUDIO_API_KEY environment variable is not set.")
         }
 
         single(qualifier = named(GOOGLE_MAPS_API_KEY)) {
-            System.getenv(ENVIRONMENT_VARIABLES_GOOGLE_MAPS_API_KEY)
+            DotenvLoader[ENVIRONMENT_VARIABLES_GOOGLE_MAPS_API_KEY]
                 ?: error("$ENVIRONMENT_VARIABLES_GOOGLE_MAPS_API_KEY environment variable is not set.")
         }
 
