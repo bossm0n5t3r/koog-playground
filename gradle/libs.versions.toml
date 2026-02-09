@@ -1,14 +1,14 @@
 [versions]
-kotlin-version = "2.3.0"
+kotlin-version = "2.3.10"
 ktlint-gradle-version = "14.0.1"
 ktlint-version = "1.6.0"
 jdk-version = "25"
-koog-version = "0.6.0"
+koog-version = "0.6.1"
 koin-bom-version = "4.1.1"
 kotlinx-serialization-version = "1.10.0"
 kotlinx-coroutines-version = "1.10.2"
 mockk-version = "1.14.9"
-logback-classic-version = "1.5.26"
+logback-classic-version = "1.5.28"
 
 [libraries]
 
