@@ -17,7 +17,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import me.bossm0n5t3r.me.bossm0n5t3r.utils.executeWithTitle
+import me.bossm0n5t3r.utils.executeWithTitle
 
 class StructuredDataProcessing(
     private val openAIApiKey: String,

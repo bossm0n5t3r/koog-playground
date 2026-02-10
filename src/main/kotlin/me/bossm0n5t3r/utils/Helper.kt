@@ -1,4 +1,4 @@
-package me.bossm0n5t3r.me.bossm0n5t3r.utils
+package me.bossm0n5t3r.utils
 
 suspend fun executeWithTitle(
     title: String,

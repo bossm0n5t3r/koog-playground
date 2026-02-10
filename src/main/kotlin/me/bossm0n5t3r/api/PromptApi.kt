@@ -8,7 +8,7 @@ import ai.koog.prompt.executor.clients.openai.OpenAILLMClient
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
 import ai.koog.prompt.params.LLMParams
-import me.bossm0n5t3r.me.bossm0n5t3r.utils.executeWithTitle
+import me.bossm0n5t3r.utils.executeWithTitle
 
 class PromptApi(
     private val openAIApiKey: String,

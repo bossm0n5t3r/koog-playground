@@ -5,7 +5,7 @@ import ai.koog.agents.core.tools.ToolRegistry
 import ai.koog.agents.ext.tool.SayToUser
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
-import me.bossm0n5t3r.me.bossm0n5t3r.utils.executeWithTitle
+import me.bossm0n5t3r.utils.executeWithTitle
 
 class SingleApi(
     private val openAIApiKey: String,
