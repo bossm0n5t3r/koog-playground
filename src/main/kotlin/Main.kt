@@ -1,5 +1,6 @@
 import me.bossm0n5t3r.LOGGER
 import me.bossm0n5t3r.agent.AIAgentSample
+import me.bossm0n5t3r.agent.OllamaAgentSample
 import me.bossm0n5t3r.api.PromptApi
 import me.bossm0n5t3r.api.SingleApi
 import me.bossm0n5t3r.di.appModule
@@ -35,6 +36,10 @@ object Application {
                 "AIAgent" to {
                     val agent: AIAgentSample by inject(AIAgentSample::class.java)
                     agent.main()
+                },
+                "OllamaAgent (qwen2.5:7b)" to {
+                    val agent: OllamaAgentSample by inject(OllamaAgentSample::class.java)
+                    agent.run()
                 },
                 "AgentWithWeatherToolSet" to {
                     val agent: AgentWithWeatherToolSet by inject(AgentWithWeatherToolSet::class.java)
