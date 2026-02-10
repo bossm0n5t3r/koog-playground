@@ -3,6 +3,7 @@ package me.bossm0n5t3r.di
 import ai.koog.prompt.executor.clients.google.GoogleLLMClient
 import ai.koog.prompt.executor.clients.openai.OpenAILLMClient
 import me.bossm0n5t3r.agent.AIAgentSample
+import me.bossm0n5t3r.agent.OllamaAgentSample
 import me.bossm0n5t3r.api.PromptApi
 import me.bossm0n5t3r.api.SingleApi
 import me.bossm0n5t3r.mcp.GoogleMaps
@@ -55,6 +56,8 @@ val appModule =
         factory { SingleApi(get(qualifier = named(OPENAI_API_KEY))) }
 
         factory { AIAgentSample(get(qualifier = named(OPENAI_API_KEY))) }
+
+        factory { OllamaAgentSample() }
 
         factory { AgentWithWeatherToolSet(get(qualifier = named(OPENAI_API_KEY))) }
 
