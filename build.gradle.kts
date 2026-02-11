@@ -22,6 +22,14 @@ repositories {
 
 dependencies {
     implementation(libs.koog.agents)
+    implementation(libs.a2a.server)
+    implementation(libs.a2a.client)
+    implementation(libs.a2a.transport.server.jsonrpc.http)
+    implementation(libs.a2a.transport.client.jsonrpc.http)
+
+    implementation(libs.ktor.server.netty)
+    implementation(libs.ktor.client.cio)
+
     implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.kotlinx.serialization.json)
@@ -39,7 +47,7 @@ tasks.test {
 
 kotlin {
     jvmToolchain(
-        libs.versions.jdk.version
+        libs.versions.jdk
             .get()
             .toInt(),
     )
@@ -47,7 +55,7 @@ kotlin {
 
 ktlint {
     version.set(
-        libs.versions.ktlint.version
+        libs.versions.pinterest.ktlint
             .get(),
     )
 }
